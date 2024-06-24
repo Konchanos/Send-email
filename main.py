@@ -5,17 +5,17 @@ my_login = os.environ['LOGIN_YANDEX']
 
 my_pass = os.environ['PASS_YANDEX']
 
-my_name = "Илья"
-friend_name = "Ира"
+sender_name = "Илья"
+recipient_name = "Ира"
 website = "https://dvmn.org/referrals/dEEadLN2iikhrftQd9BeakG2ox1jOcXDPHgit4dT/"
-senders_address = "Konchanos@yandex.ru"
-recipients_address = "ilia.snyatkov@yandex.ru"
+senders_email = "Konchanos@yandex.ru"
+recipients_email = "ilia.snyatkov@yandex.ru"
 the_title = "Приглашение!"
-type_of_letter = 'text/plain; charset="UTF-8";'
+type_of_letter =  'text/plain; charset="UTF-8";'
 
-letter = (f"""From: {senders_address}
+letter = (f"""From: {senders_email}
 
-To: {recipients_address}
+To: {recipients_email}
 
 Subject: {the_title}
 
@@ -37,11 +37,12 @@ Content-Type: {type_of_letter}
 
      Регистрируйся → %website%  
      На курсы, которые еще не вышли, можно подписаться и получить уведомление о релизе сразу на имейл.""")
-letter = letter.replace("%website%", website).replace("%my_name%", my_name).replace(" %friend_name%", friend_name)
+letter = letter.replace("%website%", website).replace("%my_name%", sender_name).replace(" %friend_name%", recipient_name)
 letter = letter.encode("UTF-8")
-print(letter)
+
 
 server = smtplib.SMTP_SSL("smtp.yandex.ru:465")
 server.login(my_login, my_pass)
 server.sendmail("Konchanos@yandex.ru", "ilia.snyatkov@yandex.ru", letter)
 server.quit()
+
