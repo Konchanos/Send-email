@@ -13,7 +13,7 @@ recipients_email = "ilia.snyatkov@yandex.ru"
 the_title = "Приглашение!"
 type_of_letter =  'text/plain; charset="UTF-8";'
 
-letter = (f"""From: {senders_email}
+letter = f"""From: {senders_email}
 
 To: {recipients_email}
 
@@ -36,13 +36,13 @@ Content-Type: {type_of_letter}
      Все проекты — они же решение наших задачек — можно разместить на твоём GitHub. Работодатели такое оценят. 
 
      Регистрируйся → %website%  
-     На курсы, которые еще не вышли, можно подписаться и получить уведомление о релизе сразу на имейл.""")
+     На курсы, которые еще не вышли, можно подписаться и получить уведомление о релизе сразу на имейл."""
 letter = letter.replace("%website%", website).replace("%my_name%", sender_name).replace(" %friend_name%", recipient_name)
 letter = letter.encode("UTF-8")
 
 
 server = smtplib.SMTP_SSL("smtp.yandex.ru:465")
 server.login(my_login, my_pass)
-server.sendmail("Konchanos@yandex.ru", "ilia.snyatkov@yandex.ru", letter)
+server.sendmail(senders_email, recipients_email, letter)
 server.quit()
 
