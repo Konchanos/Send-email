@@ -13,12 +13,9 @@ recipients_email = "ilia.snyatkov@yandex.ru"
 the_title = "Приглашение!"
 type_of_letter =  'text/plain; charset="UTF-8";'
 
-letter = f"""From: {senders_email}
-
+letter = f"""From:{senders_email}
 To: {recipients_email}
-
 Subject: {the_title}
-
 Content-Type: {type_of_letter}
 
 Привет, %friend_name%! %my_name% приглашает тебя на сайт %website%!
